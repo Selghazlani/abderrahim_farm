@@ -2,7 +2,6 @@ const express = require("express");
 const fs = require("fs-extra");
 const path = require("path");
 const app = express();
-const PORT = 3000;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
@@ -76,6 +75,9 @@ app.get("/api/all-orders", (req, res) => {
   res.json(orders);
 });
 
+const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
   console.log(`✅ Serveur en ligne sur http://localhost:${PORT}`);
 });
+
