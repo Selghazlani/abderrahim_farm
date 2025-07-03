@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>سلة الطلبات</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .container {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 0 10px #c8e6c9;
+    }
+    .product {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed #81c784;
+    }
+    .total {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #2e7d32;
+      margin: 1rem 0;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border-radius: 10px;
+      border: 1px solid #a5d6a7;
+    }
+    form button {
+      background-color: #66bb6a;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>منتجاتك المختارة</h2>
+    <div id="panier"></div>
+    <div class="total" id="total">المجموع: 0 درهم</div>
+
+    <h3>معلومات التوصيل</h3>
+    <form id="commande-form">
+      <input type="text" name="firstName" placeholder="الاسم الشخصي" required />
+      <input type="text" name="lastName" placeholder="الاسم العائلي" required />
+      <input type="tel" name="phone" placeholder="رقم الهاتف" required />
+      <textarea name="address" placeholder="عنوان التوصيل" required></textarea>
+      <input type="text" name="city" placeholder="المدينة" required />
+      <button type="submit">تأكيد الطلب</button>
+    </form>
+  </div>
+
+  <script>
+    const panier = JSON.parse(localStorage.getItem("panier")) || [];
+    const panierDiv = document.getElementById("panier");
+    const totalSpan = document.getElementById("total");
+    let total = 0;
+
+    panier.forEach(prod => {
+      const item = document.createElement("div");
+      item.className = "product";
+      item.innerHTML = `
+        <strong>${prod.nom}</strong> - ${prod.qty} × ${prod.prix} درهم = ${prod.qty * prod.prix} درهم
+      `;
+      total += prod.qty * prod.prix;
+      panierDiv.appendChild(item);
+    });
+
+    totalSpan.textContent = `المجموع: ${total.toFixed(2)} درهم`;
+
+    const form = document.getElementById("commande-form");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        firstName: form.firstName.value,
+        lastName: form.lastName.value,
+        phone: form.phone.value,
+        address: form.address.value,
+        city: form.city.value,
+        panier
+      };
+
+      const res = await fetch("/api/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        alert("✅ تم إرسال الطلب بنجاح");
+        localStorage.removeItem("panier");
+        window.location.href = "/";
+      } else {
+        alert("حدث خطأ أثناء الإرسال");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>لوحة الإدارة - الطلبات</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: #f1f8e9;
+      padding: 2rem;
+      font-family: Arial, sans-serif;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      padding: 0.7rem;
+      border: 1px solid #c5e1a5;
+      text-align: right;
+    }
+    th {
+      background-color: #81c784;
+      color: white;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>الطلبات المسجلة</h1>
+    <table id="orders-table">
+      <thead>
+        <tr>
+          <th>الاسم الكامل</th>
+          <th>الهاتف</th>
+          <th>العنوان</th>
+          <th>المدينة</th>
+          <th>المنتجات</th>
+          <th>المجموع</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    fetch('/api/all-orders')
+      .then(res => res.json())
+      .then(orders => {
+        const tbody = document.querySelector("#orders-table tbody");
+        orders.forEach(order => {
+          const tr = document.createElement("tr");
+          const produits = order.panier.map(p => `${p.nom} (x${p.qty})`).join('<br>');
+          const total = order.panier.reduce((sum, p) => sum + p.qty * p.prix, 0);
+
+          tr.innerHTML = `
+            <td>${order.firstName} ${order.lastName}</td>
+            <td>${order.phone}</td>
+            <td>${order.address}</td>
+            <td>${order.city}</td>
+            <td>${produits}</td>
+            <td>${total.toFixed(2)} درهم</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      });
+  </script>
+</body>
+</html>

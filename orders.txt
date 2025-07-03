@@ -1,0 +1,61 @@
+[7/2/2025, 8:04:56 PM] {"firstName":"Soukaina","lastName":"elghazlani","phone":"07 20 57 97 18","address":"STARLAH01 IMM 06","city":"TEMARA-MOROCCO"}
+
+[7/2/2025, 8:42:54 PM]
+الاسم: Soukaina elghazlani
+الهاتف: 0767068991
+العنوان: STARLAH01 IMM 06
+N09
+المدينة: TEMARA-MOROCCO
+الطلب:
+- دجاج ذكر: 2 × 70 = 140 درهم
+- دجاجة أنثى: 1 × 60 = 60 درهم
+============================
+
+[02/07/2025 20:50:44]
+Nom: Soukaina elghazlani
+Téléphone: 0767068991
+Ville: TEMARA-MOROCCO
+Adresse: STARLAH01 IMM 06
+N09
+Commande:
+- بيض الدجاج: 1 x 1 = 1 DH
+- ديك رومي: 1 x 150 = 150 DH
+==============================
+
+[02/07/2025 21:09:49]
+Nom: Soukaina elghazlani
+Téléphone: 0767068991
+Ville: TEMARA-MOROCCO
+Adresse: STARLAH01 IMM 06
+N09
+Commande:
+- دجاجة أنثى: 1 x 60 = 60 DH
+==============================
+
+[03/07/2025 14:22:33]
+Nom: soukaina el ghazlani
+Téléphone: 0654032002
+Ville: temara
+Adresse: res star allah1 imm 6 appt9
+Commande:
+- بيض عضوي: 1 x 1.5 = 1.5 DH
+==============================
+
+[03/07/2025 14:23:07]
+Nom: soukaina el ghazlani
+Téléphone: 0654032002
+Ville: temara
+Adresse: res star allah1 imm 6 appt9
+Commande:
+- بيض الدجاج: 100 x 1 = 100 DH
+==============================
+
+[03/07/2025 14:44:17]
+Nom: soukaina el ghazlani
+Téléphone: 0654032002
+Ville: temara
+Adresse: res star allah1 imm 6 appt9
+Commande:
+- بيض الدجاج: 9 x 1 = 9 DH
+- ديك رومي: 12 x 150 = 1800 DH
+==============================
